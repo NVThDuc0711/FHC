@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $user = new Users;
         $data = [
-            $request->id = count($user->getAllUsers()),$request->name,$request->bill,$request->phone,$request->address,$request->total_bill
+            $request->id = count($user->getAllUsers()),$request->name,$request->bill,$request->phone,$request->address,$request->total_bill,$request->create_at
         ];
 
         $user->addUsers($data);
@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function postEdit(EditRequest $request,$id){
 
         $data = [
-            $request->name,$request->bill,$request->phone,$request->address,$request->total_bill
+            $request->name,$request->bill,$request->phone,$request->address,$request->total_bill,$request->create_at
         ];
         $user = new Users ;
         $user->updateUsers($data,$id);

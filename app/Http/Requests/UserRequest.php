@@ -28,7 +28,8 @@ class UserRequest extends FormRequest
             'address' =>'required',
             'bill'=>'required',
             'phone' =>'required',
-            'total_bill'=>'required'
+            'total_bill'=>'required',
+            'create_at'=>'required|date_format:Y/d/m',
         ];
     }
 
@@ -41,7 +42,9 @@ class UserRequest extends FormRequest
         'address.required'=>'Địa chỉ bắt buộc phải nhập',
         'bill.required'=>'Hoá đơn bắt buộc nhập',
         'phone.required'=>'Số điện thoại bắt buộc nhập',
-        'total_bill.required'=>'Tổng hoá đơn bắt buộc nhập'
+        'total_bill.required'=>'Tổng hoá đơn bắt buộc nhập',
+        'create_at.required' =>'Thời gian bắt buộc nhập',
+        'create_at.date_format' => 'Thời gian phải nhập theo trình tự Năm/Ngày/Tháng'
         ];
 
     }

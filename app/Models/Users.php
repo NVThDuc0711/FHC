@@ -34,7 +34,7 @@ class Users extends Model
         //         DB::insert('INSERT INTO admin (name, email,comment,address) VALUES (?,?,?,?)',$data);
         //     }
         // }
-        DB::insert('INSERT INTO admin (id,name, bill,phone,address,total_bill) VALUES (?,?,?,?,?,?)',$data);
+        DB::insert('INSERT INTO admin (id,name, bill,phone,address,total_bill,create_at) VALUES (?,?,?,?,?,?,?)',$data);
     }
 
     public function addProducts($data)
@@ -65,7 +65,7 @@ class Users extends Model
     public function updateUsers($data,$id)
     {
         $data = array_merge($data,[$id]);
-        return DB::update('UPDATE admin SET name = ? ,bill = ? ,phone =?,address =?,total_bill=?  where id = ?', $data);
+        return DB::update('UPDATE admin SET name = ? ,bill = ? ,phone =?,address =?,total_bill=?,create_at=?  where id = ?', $data);
     }
 
     public function updateProducts($data,$id)

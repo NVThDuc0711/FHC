@@ -47,6 +47,14 @@
         @enderror
     </div>
 
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Thời gian</label>
+        <input type="text" name ="create_at"class="form-control" placeholder="Nhập Thời Gian ... " value="{{ old('create_at') ?? $userDetail->create_at }}" >
+        @error('create_at')
+            <p style="color: red">{{  $message }}</p>
+        @enderror
+    </div>
+
     <button type="submit" class="btn btn-primary">Cập Nhật</button>
   </form>
 @endsection

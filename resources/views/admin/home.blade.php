@@ -28,6 +28,7 @@
                     <th scope="col">Chi Tiết Hoá Đơn</th>
                     <th scope="col">Địa Chỉ</th>
                     <th scope="col">Tổng Tiền</th>
+                    <th scope="col">Thời gian(năm,tháng,ngày)</th>
                     <th scope="col">Sửa</th>
                     <th scope="col">Xoá</th>
                   </tr>
@@ -43,6 +44,7 @@
                             <td>{{ $value->bill }}</td>
                             <td>{{ $value->address }}</td>
                             <td>{{ $value->total_bill }}</td>
+                            <td>{{ $value->create_at  }}</td>
                             <td>
                                 <a href="{{ url('admin/edit/'.$value->id )}}">Edit</a>
                             <td>
