@@ -9,15 +9,39 @@ class Users extends Model
 {
     use HasFactory;
 
-    public function getAllUsers()
+    public function getAllUsers($filters_1 = null, $filters_2 = null)
     {
-        $users = DB::select('select * from admin');
+        $users = DB::table('admin');
+        if(!empty($filters_1) && !empty($filters_2))
+        {
+            $users = $users->where(function ($query) use ($filters_1, $filters_2) {
+                $query->whereBetween('total_bill', [$filters_1, $filters_2]);
+            });
+        }
+
+        if(!empty($filters_1) && empty($filters_2)){
+            $users = $users->where('total_bill', '>', $filters_1);
+        }
+
+        if(empty($filters_1) && !empty($filters_2)){
+            $users = $users->where('total_bill', '<', $filters_2);
+        }
+
+        $users = $users->get();
         return $users;
     }
 
-    public function getAllProducts()
+
+
+
+    public function getAllProducts($filters = [])
     {
-        $products = DB::select('select * from product ');
+        $products = DB::table('product');
+        if(!empty($filters))
+        {
+            $products = $products->where($filters);
+        }
+        $products = $products->get();
         return $products;
     }
 

@@ -25,6 +25,24 @@
                 <th scope="col">Sửa</th>
                 <th scope="col">Xoá</th>
                 <h1 style="text-align: center">Danh sách sản phẩm</h1>
+                <div class="row">
+                    <div class="col-4">
+                        <b>Bộ Lọc :</b>
+                        <br>
+
+                        <form action="" method="get">
+                            <select  class ="form-control" name ="family">
+                                <option value="">Tất Cả Các Họ</option>
+                                @if (!empty(getAllProducts()))
+                                @foreach (getAllProducts() as $item)
+                                    <option value="{{ $item->family }}">{{ $item->family }}</option>
+                                @endforeach
+                            @endif
+                            </select>
+                            <button class="submit">Tìm kiếm</button>
+                        </form>
+                    </div>
+                </div>
                 <b style="text-align: center">Số lượng sản phẩm : {{ $countProducts }}</b>
               </tr>
             </thead>
@@ -46,8 +64,8 @@
 
                     </tr>
                     @endforeach
-
-
+                @else
+                    <p>Không có dữ liệu</p>
                 @endif
 
 

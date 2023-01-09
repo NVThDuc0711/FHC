@@ -11,10 +11,22 @@ use App\Models\Users ;
 class HomeController extends Controller
 {
     protected $Data = [];
-    public function index()
+    public function index(Request $request)
     {
         $user = new Users ;
-        $userList = $user->getAllUsers();
+        $filters_1 =null;
+        $filters_2 = null;
+
+        if(!empty($request->total_bill_larger)){
+            $bill = $request->total_bill_larger;
+            $filters_1 =$bill;
+        }
+        if(!empty($request->total_bill_less)){
+            $bill = $request->total_bill_less;
+            $filters_2 =$bill;
+        }
+
+        $userList = $user->getAllUsers($filters_1, $filters_2);
         $total = 0 ;
         $countCustomer = count($userList);
         for($i=0 ; $i<$countCustomer;$i++)
@@ -29,7 +41,13 @@ class HomeController extends Controller
     {
         $user = new Users;
         $data = [
-            $request->id = count($user->getAllUsers()),$request->name,$request->bill,$request->phone,$request->address,$request->total_bill,$request->create_at
+            $request->id = count($user->getAllUsers()),
+            $request->name,
+            $request->bill,
+            $request->phone,
+            $request->address,
+            $request->total_bill,
+            $request->create_at
         ];
 
         $user->addUsers($data);

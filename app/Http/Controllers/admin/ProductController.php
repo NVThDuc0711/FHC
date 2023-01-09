@@ -11,17 +11,26 @@ use App\Http\Requests\ProductRequest;
 class ProductController extends Controller
 {
     protected $Data = [];
-    public function index()
+    public function index(Request $request)
     {
         $this ->Data['title'] = 'Sản Phẩm';
         $products = new Users;
-        $ListProducts = $products->getAllProducts();
+        $filters =[];
+        if(!empty($request->family))
+        {
+            $family = $request->family;
+            $filters[]=['product.family','like',$family];
+        }
+        $ListProducts = $products->getAllProducts($filters);
+
         $countProducts = count($products->getAllProducts());
         $total = 0 ;
-        for($i=0 ; $i<$countProducts;$i++)
-        {
-            $total = $total + $ListProducts[$i]->price;
-        }
+        // for($i=0 ; $i<$countProducts;$i++)
+        // {
+        //     $total = $total + $ListProducts[$i]->price;
+        // }
+
+        // $total = sum($countProducts->price);
         return view('admin.product',compact('ListProducts','total','countProducts'),$this->Data);
     }
     public function postInfor(ProductRequest $request)

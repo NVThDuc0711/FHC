@@ -14,7 +14,16 @@
         </div>
         <div class="col-8">
             <h1 style="text-align: center">Danh Sách Khách Hàng</h1>
+            <form action="" method="get">
+                <b>Bộ Lọc</b>
+                <br>
+                <b>Giá : </b>
+                <input name="total_bill_larger" type="form-control" placeholder="Lớn Hơn ...  ">
+                <input name="total_bill_less" type="form-control" placeholder="Nhỏ Hơn ...  ">
+                <button type="submit">Tìm Kiếm</button>
+            </form>
 
+            <hr>
             <b>Số lượng hoá đơn : {{ $countCustomer }}</b>
             <hr>
             <b>Tổng doanh thu : {{ $total }}</b>
@@ -54,12 +63,8 @@
                         </tr>
                         @endforeach
                     @else
-                        <td>No Data</td>
-
-
+                        <td>Không có dữ liệu</td>
                     @endif
-
-
                 </tbody>
         </div>
     </div>
